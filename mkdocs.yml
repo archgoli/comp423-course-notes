@@ -7,7 +7,7 @@ theme:
     - content.code.annotate
   icon:
     admonition:
-      <type>: <icon>
+      info: octicons/info-16
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
