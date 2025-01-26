@@ -7,18 +7,19 @@
 Welcome! In this tutorial, you'll learn how to set up a basic Go development container in Visual Studio Code and how to run and compile a simple program. 
 
 !!! note "Why Go?"
-    add stuff
+    Go (or Golang) is a popular, modern programming language developed by Google and has gained traction for its simplicity(making it easy to learn and use), compiles to machine code which makes it faster than interpreted languages like Python or JavaScript, and is designed for building scalable and concurrent systems.
 
 ## Prerequisites
 
-1. **A GitHub account**
-2. **Git installed**
-3. **VS Code** 
-4. **Docker installed**: Required to run the dev container. 
+1. **A GitHub account:** Sign up for one [here](https://github.com/), if you don't have one yet.  
+2. **Git installed**: [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) if you don't already have it. 
+3. **VS Code**: Download and install it [here](https://code.visualstudio.com/)
+4. **Docker installed**: Required to run the dev container. Get Docker [here](https://www.docker.com/products/docker-desktop/).
 5. **Command-line basics**: Your COMP211 command-line knowledge will serve you well here. If in doubt, review the Learn a CLI text!
 
 ## Part 1: Set up Git Repository 
-
+!!! note "Citations"
+    This section of the tutorial was developed and rewritten from [MkDocs tutorial](https://comp423-25s.github.io/resources/MkDocs/tutorial/#prerequisites) by Kris Jordan.
 ### Step 1. Create a local directory and initialize Git
 1. Open your terminal or command prompt 
 2. Create a new directory for your project. (Note: Of course, if you'd like to organize this tutorial somewhere else on your machine, go ahead and change into that parent directory first. By default this will be in your user's home directory.): 
@@ -55,11 +56,14 @@ Replace ```<your-username>``` with your GitHub username.
 2. Check your default branch name with the subcommand ```git branch```. If it's not main, rename it to main with the following command: ```git branch -M main```. Old versions of ```git``` choose the name ```master``` for the primary branch, but these days ```main``` is the standard primary branch name.
 3. Push your local commits to the GitHub repository: 
 ```git push --set-upstream origin main```
+!!! question "Why do we do this?"
+    The flag ```-set-upstream``` sets up the main branch to track the remote branch, so that future pushes and pulls made can be done without specifying the branch name and you can just write ```git push origin``` when working on your local ```main`` branch
 4. Back in your web browser, refresh your GitHub repository to see that the same commit you made locally has now been *pushed* to remote. You can use ```git log``` locally to see the commit ID and message which should match the ID of the most recent commit on GitHub. This is the result of pushing your changes to your remote repository.
 
 ## Part 2: Setting up the Development Environment
 ### What is a Development (Dev) Container?
-
+!!! note "Citations"
+    This section of the tutorial was developed and rewritten from [MkDocs tutorial](https://comp423-25s.github.io/resources/MkDocs/tutorial/#prerequisites) by Kris Jordan.
 A dev container ensures that your development environment is consistent and works across different machines. At its core, a dev container is a preconfigured environment defined by a set of files, typically leveraging Docker to create isolated, consistent setups for development. Think of it as a "mini computer" inside your computer that includes everything you need to work on a specific project—like the right programming language, tools, libraries, and dependencies.
 
 Why is this valuable? In the technology industry, teams often work on complex projects that require a specific set of tools and dependencies to function correctly. Without a dev container, each developer must manually set up their environment, leading to errors, wasted time, and inconsistencies. With a dev container, everyone works in an identical environment, reducing bugs caused by "it works on my machine" issues. It also simplifies onboarding new team members since they can start coding with just a few steps.
@@ -72,7 +76,7 @@ In summary, the ```devcontainer.json``` file specifies configuration for a consi
 Now let's establish the development environment for Go. 
 
 ### Step 1. Add Development Container Configuration
-1. In VS Code, open the ```comp423-go-tutorial directory```. You can do this via: File > Open Folder.
+1. In VS Code, open the ```comp423-go-tutorial``` directory. You can do this via: File > Open Folder.
 2. Install the **Dev Containers** extension for VS Code. 
 3. Create a ```.devcontainer``` directory in the root of your project with the following file inside of this "hidden" configuration directory.
 ```bash 
@@ -105,7 +109,7 @@ Once your dev container setup completes, close the current terminal tab (trash c
 
 ## Part 3: Creating, running, and compiling a Hello world program
 ### Step 1. Creating the project 
-In your root directory, create a file hello.go in which to write your code. 
+In your root directory, create a file ```hello.go``` in which to write your code. 
 
 ### Step 2. Write the program
 Paste the following code into your file: 
@@ -115,27 +119,27 @@ package main
 import "fmt"
 
 func main() {
-    fmt.Println("Hello 426")
+    fmt.Println("Hello COMP423")
 }
 ```
 Let's break the code down: 
 
-- **package main**: declares a main package (a package is a way to group functions, and it’s made up of all the files in the same directory)
-- **import “fmt”**: import the fmt package, which contains functions for formatting text, including printing to the console. This package is one of the standard library packages that come with installing Go. 
+- **package main**: declares a ```main``` package (a package is a way to group functions, and it’s made up of all the files in the same directory)
+- **import “fmt”**: import the ```fmt``` package, which contains functions for formatting text, including printing to the console. This package is one of the standard library packages that come with installing Go. 
 - **main()**: Implementation of the main function that will print a message to the console. A main function executes by default when you run the main package. 
 
 ### Step 3. Run your code
 Run the program using the command ```go run .```
 ```bash 
-go run 
+go run .
 ```
-This compiles and runs the named main Go package. 
+This compiles and runs the Go package ```main```. 
 
 ### Step 4. Compile your code
 
 While the ```go run``` command is a useful shortcut to compile and run and program when making frequent changes, it doesn’t generate a binary executable. The ```go build``` command compiles the packages, along with their dependencies. 
 
-!!! note 
+!!! question "What's the difference?"
     ```go build``` doesn’t install the results. The ```go install``` command will compile and install the packages.
 
 1. From the command line in the root directory, run the ```go build``` command to compile the code into an executable. 
